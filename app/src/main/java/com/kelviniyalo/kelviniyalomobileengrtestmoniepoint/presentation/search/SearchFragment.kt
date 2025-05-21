@@ -2,7 +2,6 @@ package com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.search
 
 import android.content.Context
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
@@ -12,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.R
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.data.model.SearchDeliveries
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.databinding.FragmentSearchBinding
+import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.manageElementTransition
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.startMoveUpAnimation
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,10 +24,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
 
-        val animation =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
+        manageElementTransition()
 
         initTransactionsRecyclerViewAdapter()
         with(binding) {

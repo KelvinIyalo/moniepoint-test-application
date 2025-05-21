@@ -3,13 +3,13 @@ package com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.calcula
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.os.Handler
-import android.transition.TransitionInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.R
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.databinding.FragmentCalculationSuccessBinding
+import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.manageElementTransition
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -19,11 +19,8 @@ class CalculationSuccessFragment : Fragment(R.layout.fragment_calculation_succes
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalculationSuccessBinding.bind(view)
-        val animation =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        manageElementTransition()
         val animationMoveUp = AnimationUtils.loadAnimation(requireContext(), R.anim.move_up)
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
         amountCountEffect()
         with(binding) {
             backBtn.setOnClickListener { animateAndNavigation() }

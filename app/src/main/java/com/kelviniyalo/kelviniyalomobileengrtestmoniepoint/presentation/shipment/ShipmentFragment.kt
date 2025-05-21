@@ -2,8 +2,6 @@ package com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.shipmen
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.transition.TransitionInflater
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -16,7 +14,7 @@ import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.data.model.TableItem
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.databinding.FragmentShipmentBinding
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.ShipmentStatus
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.UiState
-import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.startMoveUpAnimation
+import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.manageElementTransition
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,10 +26,7 @@ class ShipmentFragment : Fragment(R.layout.fragment_shipment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentShipmentBinding.bind(view)
-        TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move).apply {
-            sharedElementEnterTransition = this
-            sharedElementReturnTransition = this
-        }
+        manageElementTransition()
 
         with(binding) {
             backBtn.setOnClickListener { findNavController().popBackStack() }

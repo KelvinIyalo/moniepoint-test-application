@@ -3,7 +3,6 @@ package com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.calcula
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
-import android.transition.TransitionInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
@@ -15,6 +14,7 @@ import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.R
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.data.model.Categories
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.databinding.CategoryTypeBinding
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.databinding.FragmentCalculateBinding
+import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.manageElementTransition
 import com.kelviniyalo.kelviniyalomobileengrtestmoniepoint.presentation.util.Utility.startMoveUpAnimation
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,10 +27,7 @@ class CalculateFragment : Fragment(R.layout.fragment_calculate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalculateBinding.bind(view)
-        val animation =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
+        manageElementTransition()
 
         with(binding) {
             calculateBtn.setOnClickListener {
